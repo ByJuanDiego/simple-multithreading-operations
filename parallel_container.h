@@ -22,8 +22,8 @@
 #include <future>
 
 // definir solo una macro a la vez
-#define FORWARD_LIST
-//#define VECTOR
+//#define FORWARD_LIST
+#define VECTOR
 //#define DEQUE
 
 template<typename T = int, template<typename ...> class Container = std::vector, typename Iterator = typename Container<T>::iterator>

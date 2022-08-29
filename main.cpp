@@ -2,19 +2,22 @@
 #include "parallel_container.cpp"
 
 // macros
-#define FILE_MACRO
+#define CREATE_FILE
 
 int main() {
-#ifndef FILE_MACRO
-    parallel_container<>::create_file("datos3_1000.txt", 1000, 0, 100);
+
+#if defined(CREATE_FILE)
+    parallel_container<>::create_file("datos3_100000.txt", 100000, 0, 100);
 #endif
 
+    const std::string file_name = "datos3_100000.txt";
+
 #if defined(VECTOR)
-    auto* parallelContainer = new parallel_container<int, std::vector, std::vector<int>::iterator>("datos1_1000.txt");
+    auto* parallelContainer = new parallel_container<int, std::vector, std::vector<int>::iterator>(file_name);
 #elif defined(DEQUE)
-    auto* parallelContainer = new parallel_container<int, std::deque, std::deque<int>::iterator>("datos1_1000.txt");
+    auto* parallelContainer = new parallel_container<int, std::deque, std::deque<int>::iterator>(file_name);
 #elif defined(FORWARD_LIST)
-    auto* parallelContainer = new parallel_container<int, std::forward_list, std::forward_list<int>::iterator>("datos1_1000.txt");
+    auto* parallelContainer = new parallel_container<int, std::forward_list, std::forward_list<int>::iterator>(file_name);
 #endif
 
     std::cout << parallelContainer->parallel_sum_thread() << std::endl;
