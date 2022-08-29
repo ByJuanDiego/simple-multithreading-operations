@@ -1,0 +1,8 @@
+# ninja log v5
+2	210	6834729181296716	build.ninja	ca35a82e48d7772f
+2	772	6834724913211398	CMakeFiles/suma_vector_paralelo.dir/parallel_container.cpp.obj	c58ad6d3e05ca6e0
+2	1291	6834725278712029	CMakeFiles/suma_vector_paralelo.dir/main.cpp.obj	af2d85fd9623c6d2
+1291	1769	6834725282776103	suma_vector_paralelo.exe	1e8884a8cef26e9e
+0	742	6834729233896580	CMakeFiles/suma_paralela.dir/parallel_container.cpp.obj	67456f31011f7dc
+22	1319	6834729239681267	CMakeFiles/suma_paralela.dir/main.cpp.obj	cde1a291f0a0ad82
+1320	1761	6834729244268126	suma_paralela.exe	69fb5148d858ecde

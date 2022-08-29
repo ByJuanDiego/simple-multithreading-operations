@@ -1,0 +1,3 @@
+C:/Users/Juan Diego/Desktop/CS2013prog3/lab/sem10/suma_vector_paralelo/cmake-build-debug/CMakeFiles/suma_paralela.dir
+C:/Users/Juan Diego/Desktop/CS2013prog3/lab/sem10/suma_vector_paralelo/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/Juan Diego/Desktop/CS2013prog3/lab/sem10/suma_vector_paralelo/cmake-build-debug/CMakeFiles/rebuild_cache.dir
