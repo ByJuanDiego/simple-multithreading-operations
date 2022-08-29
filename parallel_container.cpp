@@ -12,43 +12,46 @@ int parallel_container<T, Container, Iterator>::get_number_of_threads(std::size_
 }
 
 template<typename T, template<typename ...> class Container, typename Iterator>
-void parallel_container<T, Container, Iterator>::summarize(Iterator begin, int range, Iterator result){
+void parallel_container<T, Container, Iterator>::summarize(Iterator begin, int range, v_Iterator result){
     *result = std::accumulate(begin, std::next(begin, range), 0);
 }
 
 template<typename T, template<typename ...> class Container, typename Iterator>
 parallel_container<T, Container, Iterator>::parallel_container(const std::string &file_name) {
+#if defined(FORWARD_LIST)
+    auto* f = std::front_inserter<Container<T>>;
+#elif defined(VECTOR) || defined(DEQUE)
+    auto* f = std::back_inserter<Container<T>>;
+#endif
     std::ifstream file(file_name, std::ios::in);
     std::copy(
         std::istream_iterator<T>(file),
         std::istream_iterator<T>(),
-        std::back_inserter(data)
+        f(data)
     );
     size = std::distance(std::begin(data), std::end(data));
 }
 
 template<typename T, template<typename ...> class Container, typename Iterator>
-T parallel_container<T, Container, Iterator>::parallel_sum_thread(int range) {
-    int number_of_threads = this->get_number_of_threads(size, range);
+T parallel_container<T, Container, Iterator>::parallel_sum_thread(int expected_range) {
+    int number_of_threads = this->get_number_of_threads(size, expected_range);
+    size_t range =  ceil((size * 1.0)/ number_of_threads);
     std::vector<std::thread> threads(number_of_threads);
     std::vector<T> subtotal(number_of_threads);
 
     Iterator data_iter = std::begin(data);
-    Iterator subtotal_iter = std::begin(subtotal);
+    v_Iterator subtotal_iter = std::begin(subtotal);
 
-    std::for_each(
-        std::begin(threads),
-        std::prev(std::end(threads)),
-        [&, range](std::thread& hilo){
-            hilo = std::thread(summarize, data_iter, range, subtotal_iter);
-            subtotal_iter++;
-            std::advance(data_iter, range);
+    for (std::thread& thread: threads){
+        if (std::distance(data_iter, std::end(data)) < range){
+            range = std::distance(data_iter, std::end(data));
         }
-    );
 
-    auto final_it = std::prev(std::end(threads));
-    auto final_rng = std::distance(data_iter, std::end(data));
-    *final_it = std::thread(summarize, data_iter, final_rng, subtotal_iter);
+        thread = std::thread(summarize, data_iter, range, subtotal_iter);
+        std::advance(data_iter, range);
+        subtotal_iter++;
+    }
+
 
     for (std::thread& thread:threads){
         thread.join();
@@ -58,28 +61,25 @@ T parallel_container<T, Container, Iterator>::parallel_sum_thread(int range) {
 }
 
 template<typename T, template<typename ...> class Container, typename Iterator>
-T parallel_container<T, Container, Iterator>::parallel_sum_thread(Iterator first, Iterator last, int range) {
+T parallel_container<T, Container, Iterator>::parallel_sum_thread(Iterator first, Iterator last, int expected_range) {
     std::size_t sz = std::distance(first, last);
-    int number_of_threads = this->get_number_of_threads(sz, range);
+    int number_of_threads = this->get_number_of_threads(sz, expected_range);
+    size_t range =  ceil((sz * 1.0)/ number_of_threads);
     std::vector<std::thread> threads(number_of_threads);
     std::vector<T> subtotal(number_of_threads);
 
     Iterator data_iter = first;
-    Iterator subtotal_iter = std::begin(subtotal);
+    v_Iterator subtotal_iter = std::begin(subtotal);
 
-    std::for_each(
-            std::begin(threads),
-            std::prev(std::end(threads)),
-            [&, range](std::thread& hilo){
-                hilo = std::thread(summarize, data_iter, range, subtotal_iter);
-                subtotal_iter++;
-                std::advance(data_iter, range);
-            }
-    );
+    for (std::thread& thread: threads){
+        if (std::distance(data_iter, last) < range){
+            range = std::distance(data_iter, last);
+        }
 
-    auto final_it = std::prev(std::end(threads));
-    auto final_rng = std::distance(data_iter, last);
-    *final_it = std::thread(summarize, data_iter, final_rng, subtotal_iter);
+        thread = std::thread(summarize, data_iter, range, subtotal_iter);
+        std::advance(data_iter, range);
+        subtotal_iter++;
+    }
 
     for (std::thread& thread:threads){
         thread.join();
