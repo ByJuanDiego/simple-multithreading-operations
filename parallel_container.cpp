@@ -18,16 +18,18 @@ void parallel_container<T, Container, Iterator>::summarize(Iterator begin, int r
 
 template<typename T, template<typename ...> class Container, typename Iterator>
 parallel_container<T, Container, Iterator>::parallel_container(const std::string &file_name) {
+
 #if defined(FORWARD_LIST)
-    auto* f = std::front_inserter<Container<T>>;
+    auto* inserter_function = std::front_inserter<Container<T>>;
 #elif defined(VECTOR) || defined(DEQUE)
-    auto* f = std::back_inserter<Container<T>>;
+    auto* inserter_function = std::back_inserter<Container<T>>;
 #endif
+
     std::ifstream file(file_name, std::ios::in);
     std::copy(
         std::istream_iterator<T>(file),
         std::istream_iterator<T>(),
-        f(data)
+        inserter_function(data)
     );
     size = std::distance(std::begin(data), std::end(data));
 }
