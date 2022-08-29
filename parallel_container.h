@@ -21,6 +21,7 @@
 #include <iostream>
 #include <future>
 
+// definir solo una macro a la vez
 #define FORWARD_LIST
 //#define VECTOR
 //#define DEQUE
