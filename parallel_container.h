@@ -21,9 +21,9 @@
 #include <iostream>
 #include <future>
 
-//#define FORWARD_LIST
+#define FORWARD_LIST
 //#define VECTOR
-#define DEQUE
+//#define DEQUE
 
 template<typename T = int, template<typename ...> class Container = std::vector, typename Iterator = typename Container<T>::iterator>
 class parallel_container {
