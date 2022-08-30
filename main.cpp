@@ -6,11 +6,12 @@
 
 int main() {
 
+    const std::string file_name = "data.txt";
+
 #if defined(CREATE_FILE)
-    parallel_container<>::create_file("datos3_100000.txt", 100000, 0, 100);
+    parallel_container<>::create_file(file_name, 100000, 0, 100);
 #endif
 
-    const std::string file_name = "datos3_100000.txt";
     parallel_container<int, std::vector> Container(file_name);
 
     std::cout << Container.parallel_sum_thread() << std::endl;
