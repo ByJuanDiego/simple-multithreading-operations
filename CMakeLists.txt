@@ -3,4 +3,4 @@ project(suma_paralela)
 
 set(CMAKE_CXX_STANDARD 17)
 
-add_executable(${PROJECT_NAME} main.cpp parallel_container.cpp parallel_container.h)
+add_executable(${PROJECT_NAME} main.cpp parallel_container.cpp parallel_container.h result_t.h)

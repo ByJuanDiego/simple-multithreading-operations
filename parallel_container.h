@@ -21,6 +21,9 @@
 #include <iostream>
 #include <future>
 
+// own libraries
+#include "result_t.h"
+
 template<typename T = int, template<typename ...> class Container = std::vector, typename Iterator = typename Container<T>::iterator>
 class parallel_container {
     
@@ -32,7 +35,7 @@ private:
     [[nodiscard]] static int get_number_of_threads(std::size_t size, int expected_range);
     auto* get_inserter_function();
     static void summarize(Iterator begin, int range, v_Iterator result);
-
+    static result_t<Iterator> search_by(const std::function<bool(T&)>& function, Iterator first, Iterator last);
 public:
 
     explicit parallel_container(const std::string& file_name);
@@ -51,6 +54,8 @@ public:
 
     Iterator begin();
     Iterator end();
+
+    [[nodiscard]] result_t<Iterator> get_by_async(const std::function<bool(T&)>& function, int expected_range = 25);
 };
 
 

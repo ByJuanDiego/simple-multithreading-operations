@@ -18,7 +18,7 @@ void parallel_container<T, Container, Iterator>::summarize(Iterator begin, int r
 
 template<typename T, template<typename ...> class Container, typename Iterator>
 auto* parallel_container<T, Container, Iterator>::get_inserter_function(){
-    if constexpr (std::is_same_v<Container<T>, std::vector<T>> || std::is_same_v<Container<T>, std::deque<T>> ){
+    if constexpr (std::is_same_v<Container<T>, std::vector<T>> || std::is_same_v<Container<T>, std::deque<T>>){
         return &std::back_inserter<Container<T>>;
     } else{
         return &std::front_inserter<Container<T>>;
@@ -57,7 +57,6 @@ T parallel_container<T, Container, Iterator>::parallel_sum_thread(int expected_r
         subtotal_iter++;
     }
 
-
     for (std::thread& thread:threads){
         thread.join();
     }
@@ -69,7 +68,7 @@ template<typename T, template<typename ...> class Container, typename Iterator>
 T parallel_container<T, Container, Iterator>::parallel_sum_thread(Iterator first, Iterator last, int expected_range) {
     std::size_t sz = std::distance(first, last);
     int number_of_threads = this->get_number_of_threads(sz, expected_range);
-    size_t range =  ceil((sz * 1.0)/ number_of_threads);
+    size_t range = ceil((sz * 1.0)/ number_of_threads);
     std::vector<std::thread> threads(number_of_threads);
     std::vector<T> subtotal(number_of_threads);
 
@@ -166,4 +165,45 @@ Iterator parallel_container<T, Container, Iterator>::begin(){
 template<typename T, template<typename ...> class Container, typename Iterator>
 Iterator parallel_container<T, Container, Iterator>::end(){
     return data.end();
+}
+
+template<typename T, template<typename ...> class Container, typename Iterator>
+result_t<Iterator> parallel_container<T, Container, Iterator>::get_by_async(const std::function<bool(T&)>& function, int expected_range) {
+    int number_of_futures = this->get_number_of_threads(size, expected_range);
+    int range =  ceil((size * 1.0)/ number_of_futures);
+    std::vector<std::future<result_t<Iterator>>> asyncs(number_of_futures);
+    Iterator data_iter = std::begin(data);
+
+    for (std::future<result_t<Iterator>>& f: asyncs){
+        if (std::distance(data_iter, std::end(data)) < range){
+            range = std::distance(data_iter, std::end(data));
+        }
+
+        f = std::async(search_by, function, data_iter, std::next(data_iter, range));
+        std::advance(data_iter, range);
+    }
+
+    result_t<Iterator> result;
+    for (std::future<result_t<Iterator>>& f: asyncs){
+        result = f.get();
+        if (!result.not_found){
+            return result;
+        }
+    }
+    result.iterator = std::end(data);
+    result.not_found = true;
+    return result;
+}
+
+template<typename T, template<typename ...> class Container, typename Iterator>
+result_t<Iterator> parallel_container<T, Container, Iterator>::search_by(const std::function<bool(T&)>& function, Iterator first, Iterator last) {
+    result_t<Iterator> result;
+    for (Iterator it = first; it != last; it++){
+        if (function(*it)){
+            result.not_found = false;
+            result.iterator = it;
+            break;
+        }
+    }
+    return result;
 }

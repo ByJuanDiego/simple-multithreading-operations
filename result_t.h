@@ -1,0 +1,16 @@
+//
+// Created by Juan Diego on 8/30/2022.
+//
+
+#ifndef SUMA_PARALELA_RESULT_T_H
+#define SUMA_PARALELA_RESULT_T_H
+
+template<typename Iterator = typename std::vector<int>::iterator>
+struct result_t{
+    bool not_found;
+    Iterator iterator;
+    result_t(): not_found(true), iterator(nullptr){}
+    ~result_t() = default;
+};
+
+#endif //SUMA_PARALELA_RESULT_T_H

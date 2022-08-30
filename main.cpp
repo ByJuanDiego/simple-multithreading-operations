@@ -2,7 +2,7 @@
 #include "parallel_container.cpp"
 
 // macros
-#define CREATE_FILE
+// #define CREATE_FILE
 
 int main() {
 
@@ -11,14 +11,26 @@ int main() {
 #endif
 
     const std::string file_name = "datos3_100000.txt";
-    auto* parallelContainer = new parallel_container<int, std::vector>(file_name);
+    parallel_container<int, std::vector> Container(file_name);
 
-    std::cout << parallelContainer->parallel_sum_thread() << std::endl;
-    std::cout << parallelContainer->parallel_sum_async() << std::endl;
-    std::cout << parallelContainer->sequential_sum() << std::endl;
+    std::cout << Container.parallel_sum_thread() << std::endl;
+    std::cout << Container.parallel_sum_async() << std::endl;
+    std::cout << Container.sequential_sum() << std::endl;
 
-    std::cout << parallelContainer->parallel_sum_thread(std::next(parallelContainer->begin(), 10), parallelContainer->end()) << std::endl;
-    std::cout << parallelContainer->parallel_sum_async(std::next(parallelContainer->begin(), 10), parallelContainer->end()) << std::endl;
+    const int num = 10;
+    std::function<bool(int&)> identifier = [&](int& x)->bool{
+        return x == num;
+    };
+
+    result_t result = Container.get_by_async(identifier);
+    if (!result.not_found){
+        std::cout << "valor buscado: " << *result.iterator << std::endl;
+        std::cout << "idx: " << std::distance(Container.begin(), result.iterator) << std::endl;
+        std::cout << Container.parallel_sum_thread(result.iterator, Container.end()) << std::endl;
+        std::cout << Container.parallel_sum_async(result.iterator, Container.end()) << std::endl;
+    } else {
+        std::cout << "No se encontro un valor con ese identificador" << std::endl;
+    }
 
     return 0;
 }
