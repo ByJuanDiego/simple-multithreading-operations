@@ -2,3 +2,6 @@
 2	210	6835881952238055	build.ninja	ca35a82e48d7772f
 2650	3396	6835879616647044	suma_paralela.exe	69fb5148d858ecde
 1291	1769	6834725282776103	suma_vector_paralelo.exe	1e8884a8cef26e9e
+0	1006	6835886611085944	CMakeFiles/parallel_algorithms.dir/parallel_container.cpp.obj	eb0fa908db10a2c9
+14	2311	6835886624097405	CMakeFiles/parallel_algorithms.dir/main.cpp.obj	bf6646cdb474f822
+2311	3036	6835886631298351	parallel_algorithms.exe	d32b282f562d7074
