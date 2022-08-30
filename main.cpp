@@ -2,7 +2,7 @@
 #include "parallel_container.cpp"
 
 // macros
-// #define CREATE_FILE
+#define CREATE_FILE
 
 int main() {
 
