@@ -36,6 +36,7 @@ private:
     auto* get_inserter_function();
     static void summarize(Iterator begin, int range, v_Iterator result);
     static result_t<Iterator> search_by(const std::function<bool(T&)>& function, Iterator first, Iterator last);
+
 public:
 
     explicit parallel_container(const std::string& file_name);

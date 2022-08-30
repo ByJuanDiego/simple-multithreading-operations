@@ -15,7 +15,6 @@ int main() {
 
     std::cout << Container.parallel_sum_thread() << std::endl;
     std::cout << Container.parallel_sum_async() << std::endl;
-    std::cout << Container.sequential_sum() << std::endl;
 
     const int num = 10;
     std::function<bool(int&)> identifier = [&](int& x)->bool{
