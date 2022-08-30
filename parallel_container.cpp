@@ -17,14 +17,17 @@ void parallel_container<T, Container, Iterator>::summarize(Iterator begin, int r
 }
 
 template<typename T, template<typename ...> class Container, typename Iterator>
+auto* parallel_container<T, Container, Iterator>::get_inserter_function(){
+    if constexpr (std::is_same_v<Container<T>, std::vector<T>> || std::is_same_v<Container<T>, std::deque<T>> ){
+        return &std::back_inserter<Container<T>>;
+    } else{
+        return &std::front_inserter<Container<T>>;
+    }
+}
+
+template<typename T, template<typename ...> class Container, typename Iterator>
 parallel_container<T, Container, Iterator>::parallel_container(const std::string &file_name) {
-
-#if defined(FORWARD_LIST)
-    auto* inserter_function = std::front_inserter<Container<T>>;
-#elif defined(VECTOR) || defined(DEQUE)
-    auto* inserter_function = std::back_inserter<Container<T>>;
-#endif
-
+    auto* inserter_function = this->get_inserter_function();
     std::ifstream file(file_name, std::ios::in);
     std::copy(
         std::istream_iterator<T>(file),

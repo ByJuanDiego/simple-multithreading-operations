@@ -21,11 +21,6 @@
 #include <iostream>
 #include <future>
 
-// definir solo una macro a la vez
-//#define FORWARD_LIST
-#define VECTOR
-//#define DEQUE
-
 template<typename T = int, template<typename ...> class Container = std::vector, typename Iterator = typename Container<T>::iterator>
 class parallel_container {
 private:
@@ -34,8 +29,8 @@ private:
     Container<T> data;
     std::size_t size;
     [[nodiscard]] static int get_number_of_threads(std::size_t size, int expected_range);
+    auto* get_inserter_function();
     static void summarize(Iterator begin, int range, v_Iterator result);
-
 public:
     explicit parallel_container(const std::string& file_name);
     ~parallel_container() = default;

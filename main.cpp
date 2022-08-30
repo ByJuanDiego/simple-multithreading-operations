@@ -11,14 +11,7 @@ int main() {
 #endif
 
     const std::string file_name = "datos3_100000.txt";
-
-#if defined(VECTOR)
-    auto* parallelContainer = new parallel_container<int, std::vector, std::vector<int>::iterator>(file_name);
-#elif defined(DEQUE)
-    auto* parallelContainer = new parallel_container<int, std::deque, std::deque<int>::iterator>(file_name);
-#elif defined(FORWARD_LIST)
-    auto* parallelContainer = new parallel_container<int, std::forward_list, std::forward_list<int>::iterator>(file_name);
-#endif
+    auto* parallelContainer = new parallel_container<int, std::vector>(file_name);
 
     std::cout << parallelContainer->parallel_sum_thread() << std::endl;
     std::cout << parallelContainer->parallel_sum_async() << std::endl;
