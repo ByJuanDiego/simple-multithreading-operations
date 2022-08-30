@@ -23,6 +23,7 @@
 
 template<typename T = int, template<typename ...> class Container = std::vector, typename Iterator = typename Container<T>::iterator>
 class parallel_container {
+    
 private:
 
     typedef typename std::vector<T>::iterator v_Iterator;
@@ -31,7 +32,9 @@ private:
     [[nodiscard]] static int get_number_of_threads(std::size_t size, int expected_range);
     auto* get_inserter_function();
     static void summarize(Iterator begin, int range, v_Iterator result);
+
 public:
+
     explicit parallel_container(const std::string& file_name);
     ~parallel_container() = default;
 
