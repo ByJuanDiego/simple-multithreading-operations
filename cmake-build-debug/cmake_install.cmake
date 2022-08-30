@@ -1,8 +1,8 @@
-# Install script for directory: C:/Users/Juan Diego/Desktop/CS2013prog3/lab/sem10/suma_vector_paralelo
+# Install script for directory: C:/Users/Juan Diego/Desktop/CS2013prog3/lab/sem10/parallel_algorithms
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "C:/Program Files (x86)/suma_vector_paralelo")
+  set(CMAKE_INSTALL_PREFIX "C:/Program Files (x86)/parallel_algorithms")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 
@@ -45,5 +45,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "C:/Users/Juan Diego/Desktop/CS2013prog3/lab/sem10/suma_vector_paralelo/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "C:/Users/Juan Diego/Desktop/CS2013prog3/lab/sem10/parallel_algorithms/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

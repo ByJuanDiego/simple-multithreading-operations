@@ -2,8 +2,8 @@
 // Created by Juan Diego on 8/28/2022.
 //
 
-#ifndef SUMA_VECTOR_PARALELO_PARALLEL_CONTAINER_H
-#define SUMA_VECTOR_PARALELO_PARALLEL_CONTAINER_H
+#ifndef PARALLEL_ALGORITHMS_PARALLEL_CONTAINER_H
+#define PARALLEL_ALGORITHMS_PARALLEL_CONTAINER_H
 
 // STL libraries
 #include <vector>
@@ -48,8 +48,6 @@ public:
     [[nodiscard]] T parallel_sum_async(int expected_range = 25);
     [[nodiscard]] T parallel_sum_async(Iterator first, Iterator last, int expected_range = 25);
 
-
-    [[nodiscard]] T sequential_sum();
     static void create_file(const std::string& file_name, std::size_t size, int min, int max);
 
     Iterator begin();
@@ -61,4 +59,4 @@ public:
 
 
 
-#endif //SUMA_VECTOR_PARALELO_PARALLEL_CONTAINER_H
+#endif //PARALLEL_ALGORITHMS_PARALLEL_CONTAINER_H

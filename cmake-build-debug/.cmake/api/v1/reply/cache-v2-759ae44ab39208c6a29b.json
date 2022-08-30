@@ -55,7 +55,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "c:/Users/Juan Diego/Desktop/CS2013prog3/lab/sem10/suma_vector_paralelo/cmake-build-debug"
+			"value" : "c:/Users/Juan Diego/Desktop/CS2013prog3/lab/sem10/parallel_algorithms/cmake-build-debug"
 		},
 		{
 			"name" : "CMAKE_CACHE_MAJOR_VERSION",
@@ -623,7 +623,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "C:/Users/Juan Diego/Desktop/CS2013prog3/lab/sem10/suma_vector_paralelo"
+			"value" : "C:/Users/Juan Diego/Desktop/CS2013prog3/lab/sem10/parallel_algorithms"
 		},
 		{
 			"name" : "CMAKE_INSTALL_PREFIX",
@@ -635,7 +635,7 @@
 				}
 			],
 			"type" : "PATH",
-			"value" : "C:/Program Files (x86)/suma_vector_paralelo"
+			"value" : "C:/Program Files (x86)/parallel_algorithms"
 		},
 		{
 			"name" : "CMAKE_LINKER",
@@ -851,7 +851,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "suma_paralela"
+			"value" : "parallel_algorithms"
 		},
 		{
 			"name" : "CMAKE_RANLIB",
@@ -1230,7 +1230,7 @@
 			"value" : "FALSE"
 		},
 		{
-			"name" : "suma_paralela_BINARY_DIR",
+			"name" : "parallel_algorithms_BINARY_DIR",
 			"properties" : 
 			[
 				{
@@ -1239,10 +1239,10 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "C:/Users/Juan Diego/Desktop/CS2013prog3/lab/sem10/suma_vector_paralelo/cmake-build-debug"
+			"value" : "C:/Users/Juan Diego/Desktop/CS2013prog3/lab/sem10/parallel_algorithms/cmake-build-debug"
 		},
 		{
-			"name" : "suma_paralela_IS_TOP_LEVEL",
+			"name" : "parallel_algorithms_IS_TOP_LEVEL",
 			"properties" : 
 			[
 				{
@@ -1254,7 +1254,7 @@
 			"value" : "ON"
 		},
 		{
-			"name" : "suma_paralela_SOURCE_DIR",
+			"name" : "parallel_algorithms_SOURCE_DIR",
 			"properties" : 
 			[
 				{
@@ -1263,43 +1263,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "C:/Users/Juan Diego/Desktop/CS2013prog3/lab/sem10/suma_vector_paralelo"
-		},
-		{
-			"name" : "suma_vector_paralelo_BINARY_DIR",
-			"properties" : 
-			[
-				{
-					"name" : "HELPSTRING",
-					"value" : "Value Computed by CMake"
-				}
-			],
-			"type" : "STATIC",
-			"value" : "C:/Users/Juan Diego/Desktop/CS2013prog3/lab/sem10/suma_vector_paralelo/cmake-build-debug"
-		},
-		{
-			"name" : "suma_vector_paralelo_IS_TOP_LEVEL",
-			"properties" : 
-			[
-				{
-					"name" : "HELPSTRING",
-					"value" : "Value Computed by CMake"
-				}
-			],
-			"type" : "STATIC",
-			"value" : "ON"
-		},
-		{
-			"name" : "suma_vector_paralelo_SOURCE_DIR",
-			"properties" : 
-			[
-				{
-					"name" : "HELPSTRING",
-					"value" : "Value Computed by CMake"
-				}
-			],
-			"type" : "STATIC",
-			"value" : "C:/Users/Juan Diego/Desktop/CS2013prog3/lab/sem10/suma_vector_paralelo"
+			"value" : "C:/Users/Juan Diego/Desktop/CS2013prog3/lab/sem10/parallel_algorithms"
 		}
 	],
 	"kind" : "cache",

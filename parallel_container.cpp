@@ -138,11 +138,6 @@ T parallel_container<T, Container, Iterator>::parallel_sum_async(Iterator first,
 }
 
 template<typename T, template<typename ...> class Container, typename Iterator>
-T parallel_container<T, Container, Iterator>::sequential_sum() {
-    return std::accumulate(std::begin(data), std::end(data), 0);
-}
-
-template<typename T, template<typename ...> class Container, typename Iterator>
 void parallel_container<T, Container, Iterator>::create_file(const std::string& file_name, std::size_t size, int min, int max){
     std::ofstream file(file_name, std::ios::out);
 

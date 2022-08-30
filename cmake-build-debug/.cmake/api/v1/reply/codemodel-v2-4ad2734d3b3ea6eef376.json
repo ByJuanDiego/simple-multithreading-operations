@@ -27,7 +27,7 @@
 					[
 						0
 					],
-					"name" : "suma_paralela",
+					"name" : "parallel_algorithms",
 					"targetIndexes" : 
 					[
 						0
@@ -38,9 +38,9 @@
 			[
 				{
 					"directoryIndex" : 0,
-					"id" : "suma_paralela::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-suma_paralela-Debug-9f28e1bd3450381f77f0.json",
-					"name" : "suma_paralela",
+					"id" : "parallel_algorithms::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-parallel_algorithms-Debug-369e0826646bd3fd8638.json",
+					"name" : "parallel_algorithms",
 					"projectIndex" : 0
 				}
 			]
@@ -49,8 +49,8 @@
 	"kind" : "codemodel",
 	"paths" : 
 	{
-		"build" : "C:/Users/Juan Diego/Desktop/CS2013prog3/lab/sem10/suma_vector_paralelo/cmake-build-debug",
-		"source" : "C:/Users/Juan Diego/Desktop/CS2013prog3/lab/sem10/suma_vector_paralelo"
+		"build" : "C:/Users/Juan Diego/Desktop/CS2013prog3/lab/sem10/parallel_algorithms/cmake-build-debug",
+		"source" : "C:/Users/Juan Diego/Desktop/CS2013prog3/lab/sem10/parallel_algorithms"
 	},
 	"version" : 
 	{

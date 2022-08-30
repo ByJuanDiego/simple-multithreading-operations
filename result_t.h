@@ -2,8 +2,10 @@
 // Created by Juan Diego on 8/30/2022.
 //
 
-#ifndef SUMA_PARALELA_RESULT_T_H
-#define SUMA_PARALELA_RESULT_T_H
+#ifndef PARALLEL_ALGORITHMS_RESULT_T_H
+#define PARALLEL_ALGORITHMS_RESULT_T_H
+
+#include <vector>
 
 template<typename Iterator = typename std::vector<int>::iterator>
 struct result_t{
@@ -13,4 +15,4 @@ struct result_t{
     ~result_t() = default;
 };
 
-#endif //SUMA_PARALELA_RESULT_T_H
+#endif //PARALLEL_ALGORITHMS_RESULT_T_H
